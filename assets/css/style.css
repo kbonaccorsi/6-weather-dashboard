@@ -1,0 +1,26 @@
+row-1
+
+/* main is not formatting */
+main {
+    background-color: rgb(211, 175, 108);
+    height: 100vh;
+}
+
+.jumbotronHeader {
+    border-bottom: 2px solid black;
+    background-color:rgb(148, 224, 217);
+}
+
+.row {
+    background-color:thistle;
+    border-bottom: .5px dashed black;
+}
+
+.container-fluid {
+    text-align:center;
+    align-content:center;
+}
+
+.searchForm {
+    padding-bottom: 55px;
+}

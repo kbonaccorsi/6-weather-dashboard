@@ -1,12 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <!-- global bootstrap link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+    <!-- global fontawesome link -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+    <!-- local css link -->
+    <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
+    <title>Weather Dashboard</title>
 </head>
+
 <body>
-    
+    <main class="container-fluid">
+        <!-- at the top of the page -->
+        <header class="jumbotronHeader container-fluid">
+            <h1>Weather Dashboard</h1>
+            <p class="lead"> Plan your next vacation around the weather</p>
+            <p id="currentDate" class="lead"></p>
+            <p id="currentTime" class="lead"></p>
+        </header>
+        <!-- Container for Today's Weather, Searchbox, and Search History -->
+        <div class="container-fluid">
+            <div class="row" id="row1id">
+                <section class="todaysWeatherSection col-9 container-fluid" id="todaysWeatherId">
+                    <h2 class="h2" id="todaysWeatherHeading">Today's Weather</h2>
+                </section>
+                <section class="navigation col-3 container-fluid" id="navigationEl">
+                    <h2>Search Here</h2>
+                    <nav class="navbar navbar-light justify-content-center">
+                        <form class="d-flex searchForm">
+                            <input class="form-control me-2" type="search" placeholder="search" aria-label="search">
+                            <button class="btn btn-outline-success bg-white" type="submit">Search</button>
+                        </form>
+                        <h3 class="h3" id="previousSearchesHeading">Previous Searches</h3>
+                        <ul class="searchHistoryList" id="searchHistoryListEl">
+
+                        </ul>
+                    </nav>
+                </section>
+            </div>
+            <div class="row" id="row2id">
+                <div class="forecastWeatherClass container-fluid" id="forecastWeatherId">
+                    <h2 class="h2" id="forecastWeatherHeading">5-day Weather Forecast</h2>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- global moment script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <!-- local javascript -->
+    <script type="text/javascript" src="./assets/js/style.js"></script>
 </body>
+
 </html>

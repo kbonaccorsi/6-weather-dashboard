@@ -17,17 +17,17 @@ use `localStorage` to store any persistent data.
 For more information on how to work with the OpenWeather API, refer to the [Full-Stack Blog on how to use API keys](https://coding-boot-camp.github.io/full-stack/apis/how-to-use-api-keys).
 
 mobile responsive
-    //full width
-    //flex boxes
-    //media query
+    full width
+    flex boxes
+    media query
 
 accessibility
-    //font > 16px;
+    font > 16px;
     //alt text
-    //colors
+    colors
 
 bootstrap
-    //link in the head section of html
+    link in the head section of html
 
 fetch
     //use weather APIs
@@ -70,18 +70,18 @@ GIVEN a weather dashboard with form inputs
     THEN I am presented with a color that indicates whether the conditions are favorable, moderate, or severe
         //color vased on UV index
             //favorable-green
-                 //add.class "green"
+                 //add.class "favorable"
             //moderate-yellow
-                //add.class "yellow"
+                 //add.class "moderate"
             //severe-red
-                //add.class"red"
+                //add.class"severe"
             //if else statement
-                //if weather conditions are === favorable
-                    add.class "green"
+                 //if weather conditions are === favorable
+                    add.class "favorable"
                     else if weather conditions are === moderate
-                    add.class "yellow"
+                    add.class "moderate"
                     else if weather conditions are === severe
-                    add.class "red"
+                    add.class "severe"
     
     WHEN I view future weather conditions for that city
     THEN I am presented with a 5-day forecast that displays the date, an icon representation of weather conditions, the temperature, the wind speed, and the humidity
