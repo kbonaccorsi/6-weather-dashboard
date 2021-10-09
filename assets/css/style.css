@@ -1,6 +1,8 @@
-row-1
+section {
+    border: 1px solid black;
+}
 
-/* main is not formatting */
+
 main {
     background-color: rgb(211, 175, 108);
     height: 100vh;
@@ -21,6 +23,25 @@ main {
     align-content:center;
 }
 
-.searchForm {
-    padding-bottom: 55px;
+.navbar {
+    display:inline;
+}
+
+span {
+    border: 1px solid black;
+    margin: 12px;
+    padding: 2px;
+}
+
+
+.favorable {
+    background-color: green;
+}
+
+.moderate {
+    background-color:yellow;
+}
+
+.severe {
+    background-color:red;
 }
