@@ -31,7 +31,21 @@
                 <!-- Current Weather -->
                 <section class="todaysWeatherSection col-9 container-fluid flex-wrap" id="todaysWeatherId">
                     <h2 class="h2" id="todaysWeatherHeading">Today's Weather</h2>
-                    <span class="currentweatherAPI">(Insert Current Weather information)</span>
+                    <div class="card mb-3" style="max-width: 540px;">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="https://picsum.photos/200/300" class="img-fluid rounded-start" alt="...">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">Card title</h5>
+                                    <p class="card-text">This is a wider card with supporting text below as a natural
+                                        lead-in to additional content. This content is a little bit longer.</p>
+                                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </section>
                 <!-- Searches -->
                 <section class="navigationSection col-3 container-fluid flex-wrap" id="navigationId">
@@ -40,7 +54,8 @@
                     <nav class="navbar navbar-light justify-content-center flex-wrap">
                         <!-- Search box -->
                         <form class="d-flex searchForm flex-wrap">
-                            <input class="form-control me-2" id="searchBox" type="search" placeholder="search" aria-label="search">
+                            <input class="form-control me-2" id="searchBox" type="search" placeholder="search"
+                                aria-label="search">
                             <button class="btn btn-outline-success bg-white" id="searchButton" type="submit">
                                 <i class="fas fa-search" alt="magnifying glass icon"></i>Search</button>
                         </form>
@@ -58,12 +73,52 @@
                 <!-- 5 day forcast -->
                 <section class="forecastWeatherClass container-fluid flex-wrap" id="forecastWeatherId">
                     <h2 class="h2" id="forecastWeatherHeading">5-day Weather Forecast</h2>
-                    <div class="d-flex justify-content-between flex-wrap" id="futureForecastContainer">
-                        <span class="futureForecast" id="futureForecast1">(Insert Future Weather information)</span>
-                        <span class="futureForecast" id="futureForecast2">(Insert Future Weather information)</span>
-                        <span class="futureForecast" id="futureForecast3">(Insert Future Weather information)</span>
-                        <span class="futureForecast" id="futureForecast4">(Insert Future Weather information)</span>
-                        <span class="futureForecast" id="futureForecast5">(Insert Future Weather information)</span>
+                    <div class="card-group">
+                        <div class="card">
+                            <img src="https://picsum.photos/200/100" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">This is a wider card with supporting text below as a natural
+                                    lead-in to additional content. This content is a little bit longer.</p>
+                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <img src="https://picsum.photos/200/100" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">This is a wider card with supporting text below as a natural
+                                    lead-in to additional content. This content is a little bit longer.</p>
+                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <img src="https://picsum.photos/200/100" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">This is a wider card with supporting text below as a natural
+                                    lead-in to additional content. This content is a little bit longer.</p>
+                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <img src="https://picsum.photos/200/100" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">This is a wider card with supporting text below as a natural
+                                    lead-in to additional content. This content is a little bit longer.</p>
+                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <img src="https://picsum.photos/200/100" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">This is a wider card with supporting text below as a natural
+                                    lead-in to additional content. This content is a little bit longer.</p>
+                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                            </div>
+                        </div>
                     </div>
                 </section>
             </div>
