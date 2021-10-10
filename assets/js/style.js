@@ -36,7 +36,7 @@ let searches = [];
 
 function getAPI() {
 
-    let city = searchBoxEl;
+    let city = searchBoxEl.value;
     // let state;
     // let country;
     
@@ -87,7 +87,6 @@ function init() {
     if (searchSave !== null) {
         searches = searchSave;
     };
-    getAPI()
 };
 
 //user searches a city and that search is saved in local storage
@@ -102,7 +101,8 @@ searchBoxEl.addEventListener("keyup", function (event) {
     }
 });
 
-searchButton.addEventListener("click", function () {
+searchButton.addEventListener("click", function (event) {
+    event.preventDefault();
     const searchText = (searchBoxEl.value.trim());
 
     if (searchText === "") {
@@ -110,10 +110,13 @@ searchButton.addEventListener("click", function () {
     };
 
     searches.push(searchText);
-    searchBoxEl.value = "";
+    
 
     storeSearches()
     getAPI()
+
+    // clearing the search box to prepare for another search
+    searchBoxEl.value = "";
 });
 
 init()
