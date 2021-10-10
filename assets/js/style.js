@@ -1,8 +1,14 @@
 //Global Variables- API keys
-const apiKeyFuture = "2333826092b58c3b0f9ed3b12d33f616";
+//const apiKeyFuture = "2333826092b58c3b0f9ed3b12d33f616";
+// let city is giving a 404 message when being used instead of typing the city name straight into the API request
+//const city = "schetz";
+// let state;
+// let country;
 const apiKeyCurrent = "6253c56c808bcdaa72af78a1a5171dde";
-//let currentQueryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKeyCurrent;
+let currentQueryURL = `https://api.openweathermap.org/data/2.5/weather?q=schertz&appid=${apiKeyCurrent}`;
+console.log(currentQueryURL);
 //let futureQueryURL = "" + city + "&appid=" + apiKeyFuture;
+
 
 // Global Variables
 const searchButton = document.getElementById("searchButton");
@@ -11,31 +17,12 @@ const searchListEl = document.getElementById("searchHistoryListEl");
 const currentDateEl = document.getElementById("currentDate");
 const currentTimeEl = document.getElementById("currentTime");
 const today = moment();
-// let city;
-// let state;
-// let country;
+
 
 
 //sets the current date and time
 currentDateEl.textContent = today.format("dddd, MMMM, DD, YYYY");
 currentTimeEl.textContent = today.format("h:mm a");
-
-
-// fetch (currentQueryURL)
-//     .then(function(response) {
-//         return response.json()
-//     })
-//     .then(function(data) {
-//         return data.json()
-//     });
-
-//     fetch (futureQueryURL)
-//     .then(function(response) {
-// return response.json()
-//     })
-//     .then(function(data) {
-//         return data.json()
-//     });
 
 
 /*
@@ -53,18 +40,61 @@ let searches =[];
 
 //user inputs their search, and the search is added as a new list item to the list of previous searches
 function renderSearches() {
-    searchListEl.innerHTML ="";
+    searchListEl.textContent ="";
 
     for (i = 0; i < searches.length; i++) {
         let search = searches[i];
 
+    let a = document.createElement("a");
     let li = document.createElement("li");
+    
     li.textContent = (search);
-    li.setAttribute("data-index", i);
-
-    searchListEl.appendChild(li);
+    li.setAttribute("city", i);
+    a.href = (currentQueryURL);
+    
+    searchListEl.appendChild(a);
+    a.appendChild(li);
     };
+
+    
+    
+
+fetch (currentQueryURL)
+    .then(function(response) {
+        return response.json()
+    })
+    .then(function(data) {
+        console.log(data)
+
+        for (var i = 0; i < data.length; i++) {
+            var link = document.createElement("a");
+
+            link.textContent = data[i].html_url;
+            link.href = data[i].html_url;
+
+            li.appendChild(link);
+            
+        }
+    });
+
+//     fetch (futureQueryURL)
+//     .then(function(response) {
+// return response.json()
+//     })
+//     .then(function(data) {
+//         return data.json()
+//     });
+
+
+
+
+
+
+
+
 };
+
+
 
 // saves searches to local storage when search button is clicked, or enter (key13) is pressed
 function init() {
@@ -93,7 +123,6 @@ searchButton.addEventListener("click", function() {
     if (searchText === "") {
         return;
     };
-
 
     searches.push(searchText);
     searchBoxEl.value = "";

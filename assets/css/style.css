@@ -33,6 +33,9 @@ span {
     padding: 2px;
 }
 
+li {
+    list-style-type: none;
+}
 
 .favorable {
     background-color: green;

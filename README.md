@@ -45,12 +45,11 @@ GIVEN a weather dashboard with form inputs
         ✓form input field for user to search
         --display current conditions
         --display future conditions
-        --add to search history
-        --list of previously visited locations
-            --local storage
-                --get user input into local storage
-                --set user input into search history
-                --traverse the DOM through DevTools, console, console logged information drop down arrow
+        ✓add to search history
+        ✓list of previously visited locations
+            ✓local storage
+                ✓get user input into local storage
+                ✓set user input into search history
     
     WHEN I view current weather conditions for that city
     THEN I am presented with the city name, the date, an icon representation of weather conditions, the temperature, the humidity, the wind speed, and the UV index
