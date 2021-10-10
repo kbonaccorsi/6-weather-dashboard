@@ -1,11 +1,12 @@
 //Global Variables- API keys
 //const apiKeyFuture = "2333826092b58c3b0f9ed3b12d33f616";
 // let city is giving a 404 message when being used instead of typing the city name straight into the API request
-//const city = "schetz";
+let city;
 // let state;
 // let country;
 const apiKeyCurrent = "6253c56c808bcdaa72af78a1a5171dde";
-let currentQueryURL = `https://api.openweathermap.org/data/2.5/weather?q=schertz&appid=${apiKeyCurrent}`;
+let currentQueryURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKeyCurrent}`;
+console.log(currentQueryURL)
 console.log(currentQueryURL);
 //let futureQueryURL = "" + city + "&appid=" + apiKeyFuture;
 
@@ -18,7 +19,7 @@ const currentDateEl = document.getElementById("currentDate");
 const currentTimeEl = document.getElementById("currentTime");
 const today = moment();
 
-
+city = searchBoxEl;
 
 //sets the current date and time
 currentDateEl.textContent = today.format("dddd, MMMM, DD, YYYY");
@@ -58,7 +59,6 @@ function renderSearches() {
 
     
     
-
 fetch (currentQueryURL)
     .then(function(response) {
         return response.json()
