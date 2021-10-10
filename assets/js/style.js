@@ -1,14 +1,7 @@
 //Global Variables- API keys
 //const apiKeyFuture = "2333826092b58c3b0f9ed3b12d33f616";
 // let city is giving a 404 message when being used instead of typing the city name straight into the API request
-let city;
-// let state;
-// let country;
 const apiKeyCurrent = "6253c56c808bcdaa72af78a1a5171dde";
-let currentQueryURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKeyCurrent}`;
-console.log(currentQueryURL)
-console.log(currentQueryURL);
-//let futureQueryURL = "" + city + "&appid=" + apiKeyFuture;
 
 
 // Global Variables
@@ -19,7 +12,7 @@ const currentDateEl = document.getElementById("currentDate");
 const currentTimeEl = document.getElementById("currentTime");
 const today = moment();
 
-city = searchBoxEl;
+
 
 //sets the current date and time
 currentDateEl.textContent = today.format("dddd, MMMM, DD, YYYY");
@@ -37,45 +30,45 @@ add.class "severe"
 */
 
 
-let searches =[];
+let searches = [];
 
 //user inputs their search, and the search is added as a new list item to the list of previous searches
-function renderSearches() {
-    searchListEl.textContent ="";
 
-    for (i = 0; i < searches.length; i++) {
-        let search = searches[i];
+function getAPI() {
 
-    let a = document.createElement("a");
-    let li = document.createElement("li");
+    let city = searchBoxEl;
+    // let state;
+    // let country;
     
-    li.textContent = (search);
-    li.setAttribute("city", i);
-    a.href = (currentQueryURL);
-    
-    searchListEl.appendChild(a);
-    a.appendChild(li);
-    };
+    let currentQueryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKeyCurrent;
+    console.log(currentQueryURL);
+    //let futureQueryURL = "" + city + "&appid=" + apiKeyFuture;
 
-    
-    
-fetch (currentQueryURL)
-    .then(function(response) {
-        return response.json()
-    })
-    .then(function(data) {
-        console.log(data)
 
-        for (var i = 0; i < data.length; i++) {
-            var link = document.createElement("a");
+    fetch(currentQueryURL)
+        .then(function (response) {
+            return response.json()
+        })
+        .then(function (data) {
+            console.log(data)
 
-            link.textContent = data[i].html_url;
-            link.href = data[i].html_url;
+            searchListEl.textContent = "";
 
-            li.appendChild(link);
-            
-        }
-    });
+            for (i = 0; i < searches.length; i++) {
+                let search = searches[i];
+
+                let a = document.createElement("a");
+                let li = document.createElement("li");
+
+                li.textContent = (search);
+                li.setAttribute("city", i);
+                a.href = (currentQueryURL);
+
+                searchListEl.appendChild(a);
+                a.appendChild(li);
+            };
+        });
+};
 
 //     fetch (futureQueryURL)
 //     .then(function(response) {
@@ -88,21 +81,13 @@ fetch (currentQueryURL)
 
 
 
-
-
-
-
-};
-
-
-
 // saves searches to local storage when search button is clicked, or enter (key13) is pressed
 function init() {
     let searchSave = JSON.parse(localStorage.getItem(searchBoxEl));
-    if(searchSave !== null) {
-    searches  = searchSave;
+    if (searchSave !== null) {
+        searches = searchSave;
     };
-    renderSearches()
+    getAPI()
 };
 
 //user searches a city and that search is saved in local storage
@@ -111,15 +96,15 @@ function storeSearches() {
 };
 
 //make the search button, and enter submit the search
-searchBoxEl.addEventListener("keyup", function(event) {
+searchBoxEl.addEventListener("keyup", function (event) {
     if (event.keyCode === 13) {
         event.preventDefault();
-}
+    }
 });
 
-searchButton.addEventListener("click", function() {
+searchButton.addEventListener("click", function () {
     const searchText = (searchBoxEl.value.trim());
-    
+
     if (searchText === "") {
         return;
     };
@@ -127,8 +112,8 @@ searchButton.addEventListener("click", function() {
     searches.push(searchText);
     searchBoxEl.value = "";
 
-    storeSearches();
-    renderSearches();
+    storeSearches()
+    getAPI()
 });
 
 init()
