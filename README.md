@@ -30,7 +30,7 @@ bootstrap
     ✓link in the head section of html
 
 fetch
-    --use weather APIs
+    ✓use openweather APIs
 
 AS A traveler
     I WANT to see the weather outlook for multiple cities
@@ -38,11 +38,11 @@ AS A traveler
 
 
 GIVEN a weather dashboard with form inputs
-    
+        ✓form input field for user to search
     
     WHEN I search for a city
     THEN I am presented with current and future conditions for that city and that city is added to the search history
-        ✓form input field for user to search
+        
         --display current conditions
         --display future conditions
         ✓add to search history

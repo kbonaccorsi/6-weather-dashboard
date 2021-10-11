@@ -63,17 +63,38 @@ function storeSearches() {
 function getCurrentWeather() {
     // city is made up of user input in the search box
     city = searchInput.value.trim();
-    console.log(city);
     //API request URL
     currentQueryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKeyCurrent;
     console.log(currentQueryURL);
+    let todaysWeatherCard = document.querySelector("#todays-weather-card-body");
     // me reaching out to openweathermap.org to get information about the city (user determined)
     fetch(currentQueryURL)
         .then(function (response) {
             return response.json()
         })
         .then(function (data) {
-            console.log(data)
+            console.log(data);
+            
+            
+            //loops through each search to get only the information desired
+
+
+            //i is undefined
+            for (let i = 0; i < data.length; i++) {
+                let cityName = document.createElement("p");
+                cityName.textContent = data[i].name;
+                console.log(cityName);
+
+                todaysWeatherCard.append(cityName);
+            }
+            // --city name
+            // --current date (moment.js())
+            // --current hour (moment.js()hours())
+            // --icon representing weather conditions
+            // --temperature
+            // --humidity
+            // --wind speed
+            // --UV index
         });
 };
 
@@ -102,44 +123,15 @@ searchButton.addEventListener("click", function (event) {
     };
     //searches array gets searchText added to the end of the searches array and returns the new length of the array
     searches.push(searchText);
-    //helper function fetches current weather data
-    getCurrentWeather();
+    
     //helper function stores searches to local storage
     storeSearches();
     //helper function renders searches to the DOM
     renderSearches();
+    //helper function fetches current weather data
+    getCurrentWeather();
     // clearing the search box to prepare for another search
     searchInput.value = "";
 });
 
 init()
-
-
-/*
-let uvIndexCheck function() {
-if UV index is === favorable
-add.class "favorable"
-else if UV index is === moderate
-add.class "moderate"
-else if UV index is === severe
-add.class "severe"
-*/
-
-/*
-let conditions function() {
-    if condtion
-}
-*/
-
-//const apiKeyFuture = "2333826092b58c3b0f9ed3b12d33f616";
-// let state;
-// let country;
-//let futureQueryURL = "" + city + "&appid=" + apiKeyFuture;
-
-//     fetch (futureQueryURL)
-//     .then(function(response) {
-// return response.json()
-//     })
-//     .then(function(data) {
-//         return data.json()
-//     });
