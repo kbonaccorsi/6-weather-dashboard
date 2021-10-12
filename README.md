@@ -53,29 +53,27 @@ GIVEN a weather dashboard with form inputs
     
     WHEN I view current weather conditions for that city
     THEN I am presented with the city name, the date, an icon representation of weather conditions, the temperature, the humidity, the wind speed, and the UV index
-        --view current conditions
-        --json array of objects
+        ✓view current conditions
             currentlyObject
-                --city name
+                ✓city name
                 --current date (moment.js())
-                --current hour (moment.js()hours())
-                --icon representing weather conditions
-                --temperature
-                --humidity
-                --wind speed
-                --UV index
+                ✓icon representing weather conditions
+                ✓temperature
+                ✓humidity
+                ✓wind speed
+                ✓UV index
     
     WHEN I view the UV index
     THEN I am presented with a color that indicates whether the conditions are favorable, moderate, or severe
-        --color based on UV index
+       ✓color based on UV index
             ✓favorable-green
                  ✓add.class "favorable"
             ✓moderate-yellow
                  ✓add.class "moderate"
             ✓severe-red
                 ✓add.class"severe"
-            --if else statement
-                 --if UV index is === favorable
+            ✓if else statement
+                 ✓if UV index is === favorable
                     add.class "favorable"
                     else if UV index is === moderate
                     add.class "moderate"

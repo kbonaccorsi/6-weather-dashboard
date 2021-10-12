@@ -28,24 +28,31 @@ section {
     padding: 2px;
     float: none;
     margin-bottom: 10px;
+    text-align: center;
+    width: 25em
 }
 
-.img {
-    padding: 5px;
+#todays-container {
+    
+}
+
+img{
+    padding: 1em;
 }
 
 li {
     list-style-type: none;
+    font-size: 20px;
 }
 
 .favorable {
-    background-color: green;
+    background-color:rgb(66, 156, 66);
 }
 
 .moderate {
-    background-color:yellow;
+    background-color:rgb(243, 243, 109);
 }
 
 .severe {
-    background-color:red;
+    background-color:rgb(165, 70, 70);
 }

@@ -1,5 +1,6 @@
 //GLOBAL VARIABLES
 const apiKeyCurrent = "6253c56c808bcdaa72af78a1a5171dde";
+const oneCallAPI = "2333826092b58c3b0f9ed3b12d33f616";
 const searchForm = document.querySelector("#search-form");
 const searchButton = document.querySelector("#search-button");
 const searchInput = document.querySelector("#search-input");
@@ -27,6 +28,7 @@ let searchText = (searchInput.value.trim());
 function renderSearches() {
     //clear searchList and update searchCountSpan
     searchList.innerHTML = "";
+
     //render a new li for each search
     for (let i = 0; i < searches.length; i++) {
         let search = searches[i];
@@ -64,9 +66,9 @@ function getCurrentWeather() {
     // city is made up of user input in the search box
     city = searchInput.value.trim();
     //API request URL
-    currentQueryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKeyCurrent;
-    console.log(currentQueryURL);
-    let todaysWeatherCard = document.querySelector("#todays-weather-card-body");
+    currentQueryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial" + "&appid=" + apiKeyCurrent;
+    let todaysWeatherCard = document.querySelector("#todays-container");
+    let iconContainer = document.querySelector("#conditions-icon");
     // me reaching out to openweathermap.org to get information about the city (user determined)
     fetch(currentQueryURL)
         .then(function (response) {
@@ -74,28 +76,51 @@ function getCurrentWeather() {
         })
         .then(function (data) {
             console.log(data);
-            
-            
-            //loops through each search to get only the information desired
 
+            let cityName = document.createElement("h3");
+                cityName.textContent = data.name;
+                todaysWeatherCard.appendChild(cityName);
 
-            //i is undefined
-            for (let i = 0; i < data.length; i++) {
-                let cityName = document.createElement("p");
-                cityName.textContent = data[i].name;
-                console.log(cityName);
-
-                todaysWeatherCard.append(cityName);
-            }
-            // --city name
+            let lat = data.coord.lat;
+            let lon = data.coord.lon;
+            let oneCallQueryURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&units=imperial" + "&appid=" + oneCallAPI;
+            console.log(oneCallQueryURL);
+            fetch(oneCallQueryURL)
+                .then(function (response) {
+                    return response.json()
+                })
+                .then(function (data) {
+                    console.log(data);
+                let temperature = document.createElement("li");
+                let humidity = document.createElement("li");
+                let windSpeed = document.createElement("li");
+                let currentIcon= document.createElement("img");
+                let icon = data.current.weather[0].icon;
+                let uv = document.createElement("li");
+                temperature.textContent = "Temperature: " + data.current.temp + " °F";
+                humidity.textContent = "Humidity: " + data.current.humidity + "%";
+                windSpeed.textContent = "Wind Speed: " + data.current.wind_speed + " mph";
+                currentIcon.src ="http://openweathermap.org/img/wn/" + icon + "@2x.png ";
+                uv.textContent = "UV index: " + data.current.uvi;
+                todaysWeatherCard.appendChild(temperature);
+                todaysWeatherCard.appendChild(humidity);
+                todaysWeatherCard.appendChild(windSpeed);
+                iconContainer.appendChild(currentIcon);
+                todaysWeatherCard.appendChild(uv);
+                // uv color coding
+                let uvIndex = data.current.uvi;
+                if (uvIndex >= 0 && uvIndex <=2) {
+                    todaysWeatherCard.classList.add("favorable");
+                } else if (uvIndex >=3 && uvIndex <=5) {
+                    todaysWeatherCard.classList.add("moderate");
+                } else if (uvIndex >=6 && uvIndex <=10) {
+                    todaysWeatherCard.classList.add("severe");
+                }
+            });
             // --current date (moment.js())
-            // --current hour (moment.js()hours())
-            // --icon representing weather conditions
-            // --temperature
-            // --humidity
-            // --wind speed
-            // --UV index
         });
+        todaysWeatherCard.innerHTML= "";
+        iconContainer.innerHTML= "";
 };
 
 
@@ -123,7 +148,7 @@ searchButton.addEventListener("click", function (event) {
     };
     //searches array gets searchText added to the end of the searches array and returns the new length of the array
     searches.push(searchText);
-    
+
     //helper function stores searches to local storage
     storeSearches();
     //helper function renders searches to the DOM
