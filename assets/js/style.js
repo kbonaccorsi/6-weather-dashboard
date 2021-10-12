@@ -32,15 +32,15 @@ function renderSearches() {
     //render a new li for each search
     for (let i = 0; i < searches.length; i++) {
         let search = searches[i];
-        let li = document.createElement("li");
-        li.textContent = search;
-        li.setAttribute("data-index", i);
+        let button = document.createElement("button");
+        button.textContent = search;
+        button.setAttribute("data-index", i);
         let a = document.createElement("a");
-        a.href = (currentQueryURL);
-        a.appendChild(li);
+        a.href = (oneCallAPI);
+        a.appendChild(button);
         searchList.appendChild(a);
-    }
-}
+    };
+};
 
 //function runs when page loads
 function init() {
@@ -59,7 +59,7 @@ function init() {
 function storeSearches() {
     //strigify and set key in localStorage to searches array
     localStorage.setItem("searches", JSON.stringify(searches));
-}
+};
 
 //user inputs their search, and the search returns fetch data
 function getCurrentWeather() {
@@ -78,8 +78,8 @@ function getCurrentWeather() {
             console.log(data);
 
             let cityName = document.createElement("h3");
-                cityName.textContent = data.name;
-                todaysWeatherCard.appendChild(cityName);
+            cityName.textContent = data.name;
+            todaysWeatherCard.appendChild(cityName);
 
             let lat = data.coord.lat;
             let lon = data.coord.lon;
@@ -91,37 +91,40 @@ function getCurrentWeather() {
                 })
                 .then(function (data) {
                     console.log(data);
-                let temperature = document.createElement("li");
-                let humidity = document.createElement("li");
-                let windSpeed = document.createElement("li");
-                let currentIcon= document.createElement("img");
-                let icon = data.current.weather[0].icon;
-                let uv = document.createElement("li");
-                temperature.textContent = "Temperature: " + data.current.temp + " °F";
-                humidity.textContent = "Humidity: " + data.current.humidity + "%";
-                windSpeed.textContent = "Wind Speed: " + data.current.wind_speed + " mph";
-                currentIcon.src ="http://openweathermap.org/img/wn/" + icon + "@2x.png ";
-                uv.textContent = "UV index: " + data.current.uvi;
-                todaysWeatherCard.appendChild(temperature);
-                todaysWeatherCard.appendChild(humidity);
-                todaysWeatherCard.appendChild(windSpeed);
-                iconContainer.appendChild(currentIcon);
-                todaysWeatherCard.appendChild(uv);
-                // uv color coding
-                let uvIndex = data.current.uvi;
-                if (uvIndex >= 0 && uvIndex <=2) {
-                    todaysWeatherCard.classList.add("favorable");
-                } else if (uvIndex >=3 && uvIndex <=5) {
-                    todaysWeatherCard.classList.add("moderate");
-                } else if (uvIndex >=6 && uvIndex <=10) {
-                    todaysWeatherCard.classList.add("severe");
-                }
-            });
+                    let temperature = document.createElement("li");
+                    let humidity = document.createElement("li");
+                    let windSpeed = document.createElement("li");
+                    let currentIcon = document.createElement("img");
+                    let icon = data.current.weather[0].icon;
+                    let uv = document.createElement("li");
+                    temperature.textContent = "Temperature: " + data.current.temp + " °F";
+                    humidity.textContent = "Humidity: " + data.current.humidity + "%";
+                    windSpeed.textContent = "Wind Speed: " + data.current.wind_speed + " mph";
+                    currentIcon.src = "http://openweathermap.org/img/wn/" + icon + "@2x.png ";
+                    uv.textContent = "UV index: " + data.current.uvi;
+                    todaysWeatherCard.appendChild(temperature);
+                    todaysWeatherCard.appendChild(humidity);
+                    todaysWeatherCard.appendChild(windSpeed);
+                    iconContainer.appendChild(currentIcon);
+                    todaysWeatherCard.appendChild(uv);
+                    // uv color coding
+                    let uvIndex = data.current.uvi;
+                    if (uvIndex >= 0 && uvIndex <= 2) {
+                        todaysWeatherCard.classList.add("favorable");
+                    } else if (uvIndex >= 3 && uvIndex <= 5) {
+                        todaysWeatherCard.classList.add("moderate");
+                    } else if (uvIndex >= 6 && uvIndex <= 10) {
+                        todaysWeatherCard.classList.add("severe");
+                    };
+                });
             // --current date (moment.js())
         });
-        todaysWeatherCard.innerHTML= "";
-        iconContainer.innerHTML= "";
+    todaysWeatherCard.innerHTML = "";
+    iconContainer.innerHTML = "";
 };
+
+
+
 
 
 
@@ -133,7 +136,7 @@ function getCurrentWeather() {
 searchInput.addEventListener("keyup", function (event) {
     if (event.keyCode === 13) {
         event.preventDefault();
-    }
+    };
 });
 
 //make clicking the search button submit the search
