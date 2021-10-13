@@ -97,4 +97,4 @@ GIVEN a weather dashboard with form inputs
         --document replace   OR  add <a href= insert link>
 
 Deployable URL:  https://kbonaccorsi.github.io/6-weather-dashboard/
-screenshot: ![image](https://user-images.githubusercontent.com/86372011/137189028-b0743cda-7ba5-431e-b16e-55dcacce8442.png)
+screenshot:![kbonaccorsi github io_6-weather-dashboard_ (1)](https://user-images.githubusercontent.com/86372011/137189963-b6ae8b4d-2ac2-4a33-a638-42ab5f6fb5e0.png)
