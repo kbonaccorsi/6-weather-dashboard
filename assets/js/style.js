@@ -7,12 +7,13 @@ const searchInput = document.querySelector("#search-input");
 const searchList = document.querySelector("#search-list");
 const currentDateEl = document.querySelector("#currentDate");
 const currentTimeEl = document.querySelector("#currentTime");
+const cardGroup = document.querySelector(".card-group");
+const jumbotronHeading = document.querySelector(".jumbotronHeader")
 const today = moment();
 let city = searchInput.value.trim();
 let currentQueryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKeyCurrent;
 //sets the current date and time
 currentDateEl.textContent = today.format("dddd, MMMM, DD, YYYY");
-currentTimeEl.textContent = today.format("h:mm a");
 //searches is an array containing storedSearches
 let searches = [];
 //searchText is the value being saved to local storage with the key searchInput.
@@ -29,15 +30,15 @@ function renderSearches() {
     //clear searchList and update searchCountSpan
     searchList.innerHTML = "";
 
-    //render a new li for each search
+    //render a new button for each search
     for (let i = 0; i < searches.length; i++) {
-        let search = searches[i];
-        let button = document.createElement("button");
-        button.textContent = search;
-        button.setAttribute("data-index", i);
+        let city = searches[i];
+        let previousSearchButton = document.createElement("button");
+        previousSearchButton.textContent = city;
+        previousSearchButton.setAttribute("data-index", i);
         let a = document.createElement("a");
         a.href = (oneCallAPI);
-        a.appendChild(button);
+        a.appendChild(previousSearchButton);
         searchList.appendChild(a);
     };
 };
@@ -79,7 +80,7 @@ function getCurrentWeather() {
 
             let cityName = document.createElement("h3");
             cityName.textContent = data.name;
-            todaysWeatherCard.appendChild(cityName);
+            jumbotronHeading.appendChild(cityName);
 
             let lat = data.coord.lat;
             let lon = data.coord.lon;
@@ -107,6 +108,7 @@ function getCurrentWeather() {
                     todaysWeatherCard.appendChild(windSpeed);
                     iconContainer.appendChild(currentIcon);
                     todaysWeatherCard.appendChild(uv);
+                    getForecastWeather(data.daily)
                     // uv color coding
                     let uvIndex = data.current.uvi;
                     if (uvIndex >= 0 && uvIndex <= 2) {
@@ -123,7 +125,47 @@ function getCurrentWeather() {
     iconContainer.innerHTML = "";
 };
 
+function getForecastWeather(dailyForecast) {
 
+    for (let i = 0; i < 5; i++) {
+        console.log(dailyForecast[i]);
+        let date = new Date((dailyForecast[i].dt) * 1000).toLocaleDateString("en-US");
+        let div = document.createElement("div");
+        let img = document.createElement("img");
+        let h5 = document.createElement("h5");
+        let conditionsList = document.createElement("ul");
+        let temperature = document.createElement("li");
+        let humidity = document.createElement("li");
+        let windSpeed = document.createElement("li");
+        let uv = document.createElement("li");
+        div.classList.add("card");
+        img.setAttribute("src", "http://openweathermap.org/img/wn/" + dailyForecast[i].weather[0].icon + "@2x.png ");
+        img.classList.add("card-img-top");
+        h5.textContent = (date);
+        conditionsList.classList.add("future-data-el");
+        temperature.textContent = "Temperature: " + dailyForecast[i].temp.day + " °F";
+        humidity.textContent = "Humidity: " + dailyForecast[i].humidity + "%";
+        windSpeed.textContent = "Wind speed: " + dailyForecast[i].wind_speed + " mph";
+        uv.textContent = "UV index: " + dailyForecast[i].uvi;
+        div.appendChild(img);
+        cardGroup.appendChild(div);
+        div.appendChild(h5);
+        div.appendChild(conditionsList);
+        conditionsList.appendChild(temperature);
+        conditionsList.appendChild(humidity);
+        conditionsList.appendChild(windSpeed);
+        conditionsList.appendChild(uv);
+
+        let uvIndex = dailyForecast[i].uvi;
+        if (uvIndex >= 0 && uvIndex <= 2) {
+            conditionsList.classList.add("favorable");
+        } else if (uvIndex >= 3 && uvIndex <= 5) {
+            conditionsList.classList.add("moderate");
+        } else if (uvIndex >= 6 && uvIndex <= 10) {
+            conditionsList.classList.add("severe");
+        };
+    };
+};
 
 
 
@@ -161,5 +203,6 @@ searchButton.addEventListener("click", function (event) {
     // clearing the search box to prepare for another search
     searchInput.value = "";
 });
+
 
 init()
