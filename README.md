@@ -96,16 +96,5 @@ GIVEN a weather dashboard with form inputs
         --clickable history
         --document replace   OR  add <a href= insert link>
 
-
-## Mock-Up
-
-The following image shows the web application's appearance and functionality:
-
-![The weather app includes a search option, a list of cities, and a five-day forecast and current weather conditions for Atlanta.](./Assets/06-server-side-apis-demo.png)
-
-
-
-    * Uses the OpenWeather API to retrieve weather data.
-
-    * Uses `localStorage` to store persistent data.
-
+Deployable URL:  https://kbonaccorsi.github.io/6-weather-dashboard/
+screenshot: ![image](https://user-images.githubusercontent.com/86372011/137189028-b0743cda-7ba5-431e-b16e-55dcacce8442.png)
